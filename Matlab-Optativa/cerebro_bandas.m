@@ -26,8 +26,6 @@ figure(15);
 
 
 plot(hz,chanpowr(l,:));
-
-hold on
 xlabel('Frequency (Hz)'), ylabel('Power (\muV)')
 axis([0 45 -inf 1*10^5])
 % set(gca,'xlim',[0 45],'ylim',[0 650])
