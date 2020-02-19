@@ -22,7 +22,7 @@ function varargout = depre(varargin)
 
 % Edit the above text to modify the response to help depre
 
-% Last Modified by GUIDE v2.5 14-Feb-2020 12:27:08
+% Last Modified by GUIDE v2.5 18-Feb-2020 21:31:25
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -1003,3 +1003,13 @@ function edit4_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+% --------------------------------------------------------------------
+function Untitled_1_Callback(hObject, eventdata, handles)
+% hObject    handle to Untitled_1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+close
+depre
+
