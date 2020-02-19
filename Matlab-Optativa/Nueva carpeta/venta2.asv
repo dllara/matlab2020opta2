@@ -142,19 +142,14 @@ f_max=[];
 
 
 
-if valormenu1==1  
+
 for e=1:19
 [w_max(e),f_max(e)]= findpeaks(chanpowr(e,freqidx(1):freqidx(2)),'SortStr' , 'descend' , 'NPeaks' , 1);
 peakToFreak(e) = hz(f_max(e));
+end
+
+
 peakToFreak=peakToFreak';
-end
-else
-    peakToFreak=mean(chanpowr(:,freqidx(1):freqidx(2)),2);
-end
-
-
-
-
 axes(handles.axes3);
 plot(EEG_tiempo(1,:),EEG_data(1,:));
 xlabel('Time (s)'), ylabel('Voltage(\muV)')
@@ -171,10 +166,22 @@ topoplotIndie(peakToFreak,dato.EEG.chanlocs,'numcontour',0);
 
 if valormenu1==1  
    set(gca,'clim',[1 30])
-else
-    set(gca,'clim',[min(peakToFreak) max(peakToFreak)])
 end
-
+if valormenu1==2  
+    set(gca,'clim',[0.5 4])
+end
+if valormenu1==3  
+    set(gca,'clim',[4 8])
+end
+if valormenu1==4
+    set(gca,'clim',[8 13])
+end
+if valormenu1==5  
+    set(gca,'clim',[13 30])
+end
+if valormenu1==6  
+    set(gca,'clim',[30 40])
+end
 
 
 
