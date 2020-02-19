@@ -1,0 +1,170 @@
+clear
+load Depresion_Prueba.mat
+
+% These data comprise 63 "epochs" of resting-state data. Each epoch is a
+%   2-second interval cut from ~2 minutes of resting-state.
+% The goal is to compute the power spectrum of each 2-second epoch
+%   separately, then average together.
+%   Then, extract the average power from 8-12 Hz (the "alpha band") and
+%   make a topographical map of the distribution of this power.
+% 
+% %channels for analysis
+
+
+ EEG_data=[];
+chanpowr=[]; 
+cont_1=0;
+cont_2=0;
+for i=1:30
+    
+ cont_1=cont_1+7500;
+cont_2=cont_1+7500;
+
+    for l=1:19
+%el bucle tiene como final  19 porque son el numero total de canales  con
+%los cuales se van a trabajar.
+EEG_data(l,:)=double(EEG.data(l,cont_1:cont_2));
+%tranformada de fourier
+s=length(EEG_data(l,:));
+nFFT=2;
+while nFFT<s
+nFFT =nFFT*2;
+end
+Fs=500;
+chanpowr(l,:)=(abs(fft(EEG_data(l,:),nFFT)));
+hz=linspace(0,Fs,nFFT);
+figure(15)
+% , clf
+% plot(hz,chanpowr(:,1:length(hz)),'linew',2)
+
+
+
+plot(hz,chanpowr(l,:))
+hold on
+xlabel('Frequency (Hz)'), ylabel('Power (\muV)')
+axis([0 45 -inf 1*10^5])
+% set(gca,'xlim',[0 45],'ylim',[0 650])
+%legend('p3','p4')
+% pause
+    end
+ hold off  
+% plot(hz,chanpowr(2,:),hz,chanpowr(12,:))
+% 
+% xlabel('Frequency (Hz)'), ylabel('Power (\muV)')
+% axis([0 45 -inf 1*10^5])
+% 
+% % hold on
+% pause  
+legend('Fp1','F3','F7','C3','T7','P3','P7','O1','Pz','Fp2','Fz','F4','F8','Cz','C4','T8','P4','P8','O2');
+
+% then average over trials
+chanpowr_1= mean(chanpowr,3);
+
+% convert to double-precision
+
+
+
+% do some plotting
+% plot power spectrum of all channels
+%% now to extract delta power
+
+% boundaries in hz
+deltabounds =[0.5 4]';
+
+% convert to indices
+freqidx =dsearchn(hz',deltabounds); 
+
+
+% extract average power
+deltapower = mean(chanpowr(:,freqidx(1):freqidx(2)),2);
+
+% and plot
+figure(16)
+
+topoplotIndie(deltapower,EEG.chanlocs,'numcontour',0);
+title('Banda delta')
+colorbar 
+% set(gca,'clim',[0 500])
+colormap jet
+
+
+%% now to extract theta power
+
+% boundaries in hz
+thetabounds =[5 8]';
+
+% convert to indices
+freqidx =dsearchn(hz',thetabounds); 
+
+
+% extract average power
+thetapower = mean(chanpowr(:,freqidx(1):freqidx(2)),2);
+
+% and plot
+figure(17)
+subplot(2,1,1)
+topoplotIndie(thetapower,EEG.chanlocs,'numcontour',0);
+% set(gca,'clim',[0 50])
+title('Banda theta')
+colormap jet
+colorbar 
+%% now to extract alpha power
+
+% boundaries in hz
+alphabounds =[8 12]';
+
+% convert to indices
+freqidx =dsearchn(hz',alphabounds); 
+
+
+% extract average power
+alphapower = mean(chanpowr(:,freqidx(1):freqidx(2)),2);
+
+% and plot
+subplot(2,1,2)
+topoplotIndie(alphapower,EEG.chanlocs,'numcontour',0);
+% set(gca,'clim',[0 6])
+title('Banda alpha')
+colormap jet
+colorbar 
+%% now to extract betha
+
+% boundaries in hz
+bethabounds =[13 30]';
+
+% convert to indices
+freqidx =dsearchn(hz',bethabounds); 
+
+
+% extract average power
+bethapower = mean(chanpowr(:,freqidx(1):freqidx(2)),2);
+figure(18)
+% and plot
+subplot(2,1,1)
+topoplotIndie(bethapower,EEG.chanlocs,'numcontour',0);
+% set(gca,'clim',[0 6])
+title('Banda betha')
+colormap jet
+colorbar 
+
+%% now to extract gamma
+
+% boundaries in hz
+gammabounds =[31 40]';
+
+% convertir a índices
+freqidx =dsearchn(hz',gammabounds); 
+
+
+% extract average power
+gammapower = mean(chanpowr(:,freqidx(1):freqidx(2)),2);
+
+% and plot
+subplot(2,1,2)
+topoplotIndie(gammapower,EEG.chanlocs,'numcontour',0);
+% set(gca,'clim',[0 6])
+title('banda gamma')
+colormap jet
+colorbar 
+pause
+end
