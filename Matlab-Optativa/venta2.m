@@ -22,7 +22,6 @@ function varargout = venta2(varargin)
 
 % Edit the above text to modify the response to help venta2
 
-% Last Modified by GUIDE v2.5 18-Feb-2020 23:42:58
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -43,7 +42,6 @@ else
 end
 % End initialization code - DO NOT EDIT
 
-
 % --- Executes just before venta2 is made visible.
 function venta2_OpeningFcn(hObject, eventdata, handles, varargin)
 % This function has no output args, see OutputFcn.
@@ -57,6 +55,7 @@ global dato
 global contadorTiempo
 global vectortiempo
 global valormenu1
+global chanel;
 dato=load('Depresion_Prueba.mat');
 contadorTiempo=0;
 Fs=500;
@@ -89,6 +88,7 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global dato 
 global valormenu1
+global chanel
 EEG_data=[];
 EEG_tiempo=[];
 chanpowr=[]; 
@@ -151,21 +151,14 @@ end
 else
     peakToFreak=mean(chanpowr(:,freqidx(1):freqidx(2)),2);
 end
-
-
-
-
 axes(handles.axes3);
-plot(EEG_tiempo(1,:),EEG_data(1,:));
+plot(EEG_tiempo(chanel,:),EEG_data(chanel,:));
 xlabel('Time (s)'), ylabel('Voltage(\muV)')
-
 axes(handles.axes1);
-plot(hz,chanpowr(1,:));
+plot(hz,chanpowr(chanel,:));
 xlabel('Frequency (Hz)'), ylabel('Power (\muV)')
 axis([0 45 -inf 1*10^5])
-legend('Fp1','F3','F7','C3','T7','P3','P7','O1','Pz','Fp2','Fz','F4','F8','Cz','C4','T8','P4','P8','O2');
 
-  
 axes(handles.axes2);
 topoplotIndie(peakToFreak,dato.EEG.chanlocs,'numcontour',0);
 
@@ -218,3 +211,262 @@ function popupmenu1_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+=======
+% --- Executes on button press in F3.
+function F3_Callback(hObject, eventdata, handles)
+% hObject    handle to F3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global chanel
+if handles.F3.Value==1
+   chanel=2
+    elseif handles.fp1.Value==1
+chanel=2
+end
+% Hint: get(hObject,'Value') returns toggle state of F3
+
+
+% --- Executes on button press in fp1.
+function fp1_Callback(hObject, eventdata, handles)
+% hObject    handle to fp1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global chanel
+if handles.fp1.Value==1
+   chanel=1
+    elseif handles.fp1.Value==1
+chanel=1
+end
+% Hint: get(hObject,'Value') returns toggle state of fp1
+
+
+% --- Executes on button press in F7.
+function F7_Callback(hObject, eventdata, handles)
+% hObject    handle to F7 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global chanel
+if handles.F7.Value==1
+   chanel=3
+    elseif handles.F7.Value==1
+chanel=3
+end
+% Hint: get(hObject,'Value') returns toggle state of F7
+
+
+% --- Executes on button press in C3.
+function C3_Callback(hObject, eventdata, handles)
+% hObject    handle to C3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global chanel
+if handles.C3.Value==1
+   chanel=4
+    elseif handles.C3.Value==1
+chanel=4
+end
+% Hint: get(hObject,'Value') returns toggle state of C3
+
+
+% --- Executes on button press in T7.
+function T7_Callback(hObject, eventdata, handles)
+% hObject    handle to T7 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global chanel
+if handles.T7.Value==1
+   chanel=5
+    elseif handles.T7.Value==1
+chanel=5
+end
+% Hint: get(hObject,'Value') returns toggle state of T7
+
+
+% --- Executes on button press in P3.
+function P3_Callback(hObject, eventdata, handles)
+% hObject    handle to P3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global chanel
+if handles.P3.Value==1
+   chanel=6
+    elseif handles.P3.Value==1
+chanel=6
+end
+% Hint: get(hObject,'Value') returns toggle state of P3
+
+
+% --- Executes on button press in P7.
+function P7_Callback(hObject, eventdata, handles)
+% hObject    handle to P7 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global chanel
+if handles.P7.Value==1
+   chanel=7
+    elseif handles.P7.Value==1
+chanel=7
+end
+% Hint: get(hObject,'Value') returns toggle state of P7
+
+
+% --- Executes on button press in O1.
+function O1_Callback(hObject, eventdata, handles)
+% hObject    handle to O1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global chanel
+if handles.O1.Value==1
+   chanel=8
+    elseif handles.O1.Value==1
+chanel=8
+end
+% Hint: get(hObject,'Value') returns toggle state of O1
+
+
+% --- Executes on button press in PZ.
+function PZ_Callback(hObject, eventdata, handles)
+% hObject    handle to PZ (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global chanel
+if handles.PZ.Value==1
+   chanel=9
+    elseif handles.PZ.Value==1
+chanel=9
+end
+% Hint: get(hObject,'Value') returns toggle state of PZ
+
+
+% --- Executes on button press in FP2.
+function FP2_Callback(hObject, eventdata, handles)
+% hObject    handle to FP2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global chanel
+if handles.FP2.Value==1
+   chanel=10
+    elseif handles.FP2.Value==1
+chanel=10
+end
+% Hint: get(hObject,'Value') returns toggle state of FP2
+
+
+% --- Executes on button press in FZ.
+function FZ_Callback(hObject, eventdata, handles)
+% hObject    handle to FZ (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global chanel
+if handles.FZ.Value==1
+   chanel=11
+    elseif handles.FZ.Value==1
+chanel=11
+end
+% Hint: get(hObject,'Value') returns toggle state of FZ
+
+
+% --- Executes on button press in F4.
+function F4_Callback(hObject, eventdata, handles)
+% hObject    handle to F4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global chanel
+if handles.F4.Value==1
+   chanel=12
+    elseif handles.F4.Value==1
+chanel=12
+% Hint: get(hObject,'Value') returns toggle state of F4
+end
+
+% --- Executes on button press in F8.
+function F8_Callback(hObject, eventdata, handles)
+% hObject    handle to F8 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global chanel
+if handles.F8.Value==1
+   chanel=13
+    elseif handles.F8.Value==1
+chanel=13
+% Hint: get(hObject,'Value') returns toggle state of F8
+end
+
+% --- Executes on button press in CZ.
+function CZ_Callback(hObject, eventdata, handles)
+% hObject    handle to CZ (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global chanel
+if handles.CZ.Value==1
+   chanel=14
+    elseif handles.CZ.Value==1
+chanel=14
+% Hint: get(hObject,'Value') returns toggle state of CZ
+end
+
+% --- Executes on button press in C4.
+function C4_Callback(hObject, eventdata, handles)
+% hObject    handle to C4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global chanel
+if handles.C4.Value==1
+   chanel=15
+    elseif handles.C4.Value==1
+chanel=15
+% Hint: get(hObject,'Value') returns toggle state of C4
+end
+
+% --- Executes on button press in T8.
+function T8_Callback(hObject, eventdata, handles)
+% hObject    handle to T8 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global chanel
+if handles.T8.Value==1
+   chanel=16
+    elseif handles.T8.Value==1
+chanel=16
+% Hint: get(hObject,'Value') returns toggle state of T8
+end
+
+% --- Executes on button press in P4.
+function P4_Callback(hObject, eventdata, handles)
+% hObject    handle to P4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global chanel
+if handles.P4.Value==1
+   chanel=17
+    elseif handles.P4.Value==1
+chanel=17
+% Hint: get(hObject,'Value') returns toggle state of P4
+end
+
+% --- Executes on button press in P8.
+function P8_Callback(hObject, eventdata, handles)
+% hObject    handle to P8 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global chanel
+if handles.P8.Value==1
+   chanel=18
+    elseif handles.P8.Value==1
+chanel=18
+% Hint: get(hObject,'Value') returns toggle state of P8
+
+end
+% --- Executes on button press in O2.
+function O2_Callback(hObject, eventdata, handles)
+% hObject    handle to O2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global chanel
+if handles.O2.Value==1
+   chanel=19
+    elseif handles.O2.Value==1
+chanel=19
+% Hint: get(hObject,'Value') returns toggle state of O2
+end
+
