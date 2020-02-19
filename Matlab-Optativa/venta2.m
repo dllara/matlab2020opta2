@@ -22,7 +22,7 @@ function varargout = venta2(varargin)
 
 % Edit the above text to modify the response to help venta2
 
-% Last Modified by GUIDE v2.5 18-Feb-2020 22:22:24
+% Last Modified by GUIDE v2.5 18-Feb-2020 23:26:16
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -55,9 +55,12 @@ function venta2_OpeningFcn(hObject, eventdata, handles, varargin)
 % Choose default command line output for venta2
 global dato
 global contadorTiempo
+global vectortiempo
 dato=load('Depresion_Prueba.mat');
 contadorTiempo=0;
-
+Fs=500;
+longitud =length(double(dato.EEG.data(1,:)))
+vectortiempo=(0:longitud)/Fs;
 handles.output = hObject;
 
 % Update handles structure
@@ -85,11 +88,14 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global dato 
 EEG_data=[];
+EEG_tiempo=[];
 chanpowr=[]; 
 Fs=500;
 global contadorTiempo
+global vectortiempo
 for l=1:19
 EEG_data(l,:)=double(dato.EEG.data(l,(contadorTiempo*15*Fs)+1:(contadorTiempo+1)*15*Fs));
+EEG_tiempo(l,:)=vectortiempo((contadorTiempo*15*Fs)+1:(contadorTiempo+1)*15*Fs);
 s=length(EEG_data(l,:));
 nFFT=2;
 while nFFT<s
@@ -109,6 +115,9 @@ for e=1:19
 peakToFreak(e) = hz(f_max(e));
 end
 peakToFreak=peakToFreak';
+axes(handles.axes3);
+plot(EEG_tiempo(1,:),EEG_data(1,:));
+xlabel('Time (s)'), ylabel('Voltage(\muV)')
 
 axes(handles.axes1);
 plot(hz,chanpowr(1,:));
@@ -128,12 +137,3 @@ colorbar('Ticks',[4,8,13,30],...
 
 
 contadorTiempo=contadorTiempo+1
-
-
-
-
-
-
-
-
-

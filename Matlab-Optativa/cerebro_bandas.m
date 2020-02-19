@@ -74,7 +74,7 @@ o2.Position = [20 58 60 20];
 
 
 
-pause
+% pause
     end
  hold off  
 legend('Fp1','F3','F7','C3','T7','P3','P7','O1','Pz','Fp2','Fz','F4','F8','Cz','C4','T8','P4','P8','O2');
@@ -85,107 +85,107 @@ legend('Fp1','F3','F7','C3','T7','P3','P7','O1','Pz','Fp2','Fz','F4','F8','Cz','
 
 
 
-% plot todos los canales
-% %% delta power
-% 
-% % Establecemos las bandas in hz
-% deltabounds =[0.5 4]';
-% 
-% % convert to indices
-% freqidx =dsearchn(hz',deltabounds); 
-% 
-% 
-% % extraemos la media
-% deltapower = mean(chanpowr(:,freqidx(1):freqidx(2)),2);
-% 
-% % dibujamos por bandas
-% figure(16)
-% 
-% topoplotIndie(deltapower,EEG.chanlocs,'numcontour',0);
-% title('Banda delta')
-% colorbar 
-% % set(gca,'clim',[0 500])
-% colormap jet
-% 
-% 
-% %% theta power
-% 
-% 
-% thetabounds =[5 8]';
-% 
-% 
-% freqidx =dsearchn(hz',thetabounds); 
-% 
-% 
-% 
-% thetapower = mean(chanpowr(:,freqidx(1):freqidx(2)),2);
-% 
-% 
-% figure(17)
-% subplot(2,1,1)
-% topoplotIndie(thetapower,EEG.chanlocs,'numcontour',0);
-% 
-% title('Banda theta')
-% colormap jet
-% colorbar 
-% %%  alpha power
-% 
-% 
-% alphabounds =[8 12]';
-% 
-% 
-% freqidx =dsearchn(hz',alphabounds); 
-% 
-% 
-% 
-% alphapower = mean(chanpowr(:,freqidx(1):freqidx(2)),2);
-% 
-% 
-% subplot(2,1,2)
-% topoplotIndie(alphapower,EEG.chanlocs,'numcontour',0);
-% 
-% title('Banda alpha')
-% colormap jet
-% colorbar 
-% %% betha power
-% 
-% 
-% bethabounds =[13 30]';
-% 
-% 
-% freqidx =dsearchn(hz',bethabounds); 
-% 
-% 
-% 
-% bethapower = mean(chanpowr(:,freqidx(1):freqidx(2)),2);
-% figure(18)
-% 
-% subplot(2,1,1)
-% topoplotIndie(bethapower,EEG.chanlocs,'numcontour',0);
-% 
-% title('Banda betha')
-% colormap jet
-% colorbar 
-% 
-% %% gamma power
-% 
-% 
-% gammabounds =[31 40]';
-% 
-% % convertir a índices
-% freqidx =dsearchn(hz',gammabounds); 
-% 
-% 
-% % extraer potencia media
-% gammapower = mean(chanpowr(:,freqidx(1):freqidx(2)),2);
-% 
-% 
-% subplot(2,1,2)
-% topoplotIndie(gammapower,EEG.chanlocs,'numcontour',0);
-% 
-% title('banda gamma')
-% colormap jet
-% colorbar 
+%plot todos los canales
+%% delta power
+
+% Establecemos las bandas in hz
+deltabounds =[0.5 4]';
+
+% convert to indices
+freqidx =dsearchn(hz',deltabounds); 
+
+
+% extraemos la media
+deltapower = mean(chanpowr(:,freqidx(1):freqidx(2)),2);
+
+% dibujamos por bandas
+figure(16)
+
+topoplotIndie(deltapower,EEG.chanlocs,'numcontour',0);
+title('Banda delta')
+colorbar 
+% set(gca,'clim',[0 500])
+colormap jet
+
+
+%% theta power
+
+
+thetabounds =[5 8]';
+
+
+freqidx =dsearchn(hz',thetabounds); 
+
+
+
+thetapower = mean(chanpowr(:,freqidx(1):freqidx(2)),2);
+
+
+figure(17)
+subplot(2,1,1)
+topoplotIndie(thetapower,EEG.chanlocs,'numcontour',0);
+
+title('Banda theta')
+colormap jet
+colorbar 
+%%  alpha power
+
+
+alphabounds =[8 12]';
+
+
+freqidx =dsearchn(hz',alphabounds); 
+
+
+
+alphapower = mean(chanpowr(:,freqidx(1):freqidx(2)),2);
+
+
+subplot(2,1,2)
+topoplotIndie(alphapower,EEG.chanlocs,'numcontour',0);
+
+title('Banda alpha')
+colormap jet
+colorbar 
+%% betha power
+
+
+bethabounds =[13 30]';
+
+
+freqidx =dsearchn(hz',bethabounds); 
+
+
+
+bethapower = mean(chanpowr(:,freqidx(1):freqidx(2)),2);
+figure(18)
+
+subplot(2,1,1)
+topoplotIndie(bethapower,EEG.chanlocs,'numcontour',0);
+
+title('Banda betha')
+colormap jet
+colorbar 
+
+%% gamma power
+
+
+gammabounds =[31 40]';
+
+% convertir a índices
+freqidx =dsearchn(hz',gammabounds); 
+
+
+% extraer potencia media
+gammapower = mean(chanpowr(:,freqidx(1):freqidx(2)),2);
+
+
+subplot(2,1,2)
+topoplotIndie(gammapower,EEG.chanlocs,'numcontour',0);
+
+title('banda gamma')
+colormap jet
+colorbar 
 %% banda completa
 
 % límites en hz
