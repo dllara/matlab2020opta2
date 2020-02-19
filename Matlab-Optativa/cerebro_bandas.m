@@ -35,20 +35,50 @@ axis([0 45 -inf 1*10^5])
 %ButtonH=uicontrol('Parent',hFig,'Style','pushbutton','String','View Data','Units','normalized','Position',[0.0 0.5 0.4 0.2],,'Visible','on');
 
   fp1 = uicontrol('Style','radiobutton','String','Fp1');
-fp1.Position = [20 450 60 20];
-% f3 = uicontrol('Style','radiobutton','String','F3');
-% f7 = uicontrol('Style','radiobutton','String','F7');
-% c3 = uicontrol('Style','radiobutton','String','C3');
-% t7 = uicontrol('Style','radiobutton','String','T7');
-% p3 = uicontrol('Style','radiobutton','String','P3');
+fp1.Position = [20 600 60 20];
+ f3 = uicontrol('Style','radiobutton','String','F3');
+f3.Position = [20 570 60 20];
+  f7 = uicontrol('Style','radiobutton','String','F7');
+f7.Position = [20 540 60 20];
+   c3 = uicontrol('Style','radiobutton','String','C3');
+c3.Position = [20 510 60 20];
+t7 = uicontrol('Style','radiobutton','String','T7');
+t7.Position = [20 480 60 20];
+ p3 = uicontrol('Style','radiobutton','String','P3');
+p3.Position = [20 450 60 20];
+ p7 = uicontrol('Style','radiobutton','String','P7');
+p7.Position = [20 420 60 20];
+ o1 = uicontrol('Style','radiobutton','String','O1');
+o1.Position = [20 390 60 20];
+ pz = uicontrol('Style','radiobutton','String','PZ');
+pz.Position = [20 360 60 20];
+ fp2 = uicontrol('Style','radiobutton','String','FP2');
+fp2.Position = [20 330 60 20];
+ fz = uicontrol('Style','radiobutton','String','FZ');
+fz.Position = [20 300 60 20];
+ f4 = uicontrol('Style','radiobutton','String','F4');
+f4.Position = [20 270 60 20];
+ f8 = uicontrol('Style','radiobutton','String','F8');
+f8.Position = [20 240 60 20];
+cz = uicontrol('Style','radiobutton','String','CZ');
+cz.Position = [20 210 60 20];
+c4 = uicontrol('Style','radiobutton','String','C4');
+c4.Position = [20 180 60 20];
+t8 = uicontrol('Style','radiobutton','String','T8');
+t8.Position = [20 150 60 20];
+p4 = uicontrol('Style','radiobutton','String','P4');
+p4.Position = [20 120 60 20];
+p8 = uicontrol('Style','radiobutton','String','P8');
+p8.Position = [20 90 60 20];
+o2 = uicontrol('Style','radiobutton','String','O2');
+o2.Position = [20 58 60 20];
+
+
+
 
 pause
-  
     end
-
-
  hold off  
-
 legend('Fp1','F3','F7','C3','T7','P3','P7','O1','Pz','Fp2','Fz','F4','F8','Cz','C4','T8','P4','P8','O2');
 
 
